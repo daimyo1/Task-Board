@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.querySelector('.close');
     const taskForm = document.getElementById('task-form');
 
-   
     const loadTasks = () => {
         const notStarted = document.getElementById('not-started');
         const inProgress = document.getElementById('in-progress');
@@ -20,12 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    
     const saveTasks = (tasks) => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     };
 
-  
     const addTaskToBoard = (task) => {
         const taskEl = document.createElement('div');
         taskEl.classList.add('task');
@@ -38,9 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (now > deadline) {
             taskEl.classList.add('red');
-        } else if ((deadline - now) / (1000 * 60 * 60 * 24) <= 2) { // 2 days threshold
+        } else if ((deadline - now) / (1000 * 60 * 60 * 24) <= 2) { 
             taskEl.classList.add('yellow');
         }
+
+        taskEl.classList.add(`task[data-status="${task.status}"]`);
 
         taskEl.innerHTML = `
             <h3>${task.title}</h3>
@@ -56,21 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskList = document.getElementById(task.status);
         taskList.appendChild(taskEl);
 
-       
         taskEl.addEventListener('dragstart', dragStart);
         taskEl.addEventListener('dragend', dragEnd);
     };
 
-    
     newTaskBtn.addEventListener('click', () => {
         modal.style.display = 'block';
     });
 
-  
     closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
-
 
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -97,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none';
     });
 
-   
     const deleteTask = (taskId) => {
         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         tasks = tasks.filter(task => task.id !== taskId);
@@ -105,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTasks();
     };
 
-  
     let draggedTask = null;
 
     const dragStart = (e) => {
@@ -146,6 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
- 
     loadTasks();
 });
+

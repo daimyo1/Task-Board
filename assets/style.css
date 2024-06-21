@@ -1,5 +1,8 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
 }
 
 .board {
@@ -10,10 +13,11 @@ body {
 
 .column {
     width: 30%;
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .column h2 {
@@ -22,23 +26,39 @@ body {
 
 .task-list {
     min-height: 200px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .task {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
 .task.yellow {
-    background-color: yellow;
+    background-color: rgba(255, 255, 0, 0.8);
 }
 
 .task.red {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.task[data-status="not-started"] {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.task[data-status="in-progress"] {
+    background-color: rgba(173, 216, 230, 0.8);
+}
+
+.task[data-status="completed"] {
+    background-color: rgba(144, 238, 144, 0.8);
 }
 
 #new-task-btn {
@@ -46,6 +66,17 @@ body {
     margin: 20px auto;
     padding: 10px 20px;
     font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+#new-task-btn:hover {
+    background-color: #0056b3;
 }
 
 .modal {
@@ -57,18 +88,23 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .close {
@@ -76,11 +112,61 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close:hover,
 .close:focus {
     color: black;
     text-decoration: none;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content label {
+    margin-top: 10px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: white;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.delete-btn:hover {
+    background-color: #c82333;
 }
