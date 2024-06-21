@@ -59,39 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         taskEl.addEventListener('dragend', dragEnd);
     };
 
-    newTaskBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const title = document.getElementById('task-title').value;
-        const description = document.getElementById('task-desc').value;
-        const deadline = document.getElementById('task-deadline').value;
-
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        const newTask = {
-            id: Date.now().toString(),
-            title,
-            description,
-            deadline,
-            status: 'not-started'
-        };
-
-        tasks.push(newTask);
-        saveTasks(tasks);
-
-        addTaskToBoard(newTask);
-
-        taskForm.reset();
-        modal.style.display = 'none';
-    });
-
     const deleteTask = (taskId) => {
         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         tasks = tasks.filter(task => task.id !== taskId);
@@ -139,6 +106,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    newTaskBtn.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById('task-title').value;
+        const description = document.getElementById('task-desc').value;
+        const deadline = document.getElementById('task-deadline').value;
+
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const newTask = {
+            id: Date.now().toString(),
+            title,
+            description,
+            deadline,
+            status: 'not-started'
+        };
+
+        tasks.push(newTask);
+        saveTasks(tasks);
+
+        addTaskToBoard(newTask);
+
+        taskForm.reset();
+        modal.style.display = 'none';
+    });
+
+    
+    modal.style.display = 'none';
+
     loadTasks();
 });
-
