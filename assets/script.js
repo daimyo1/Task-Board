@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const newTaskBtn = document.getElementById('new-task-btn');
+    const toggleThemeBtn = document.getElementById('toggle-theme-btn');
     const modal = document.getElementById('task-modal');
     const closeModalBtn = document.querySelector('.close');
     const taskForm = document.getElementById('task-form');
@@ -139,7 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none';
     });
 
-    
+    toggleThemeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        document.body.classList.toggle('light-mode');
+    });
+
     modal.style.display = 'none';
 
     loadTasks();

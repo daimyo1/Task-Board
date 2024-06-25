@@ -6,15 +6,16 @@
     <title>Task Board</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="light-mode">
 
     <nav class="navbar">
         <button id="new-task-btn">New Task</button>
+        <button id="toggle-theme-btn">Toggle Theme</button>
     </nav>
 
     <main class="board">
         <div class="column" data-status="not-started">
-            <h2>Not Yet Started</h2>
+            <h2>To Do</h2>
             <div class="task-list" id="not-started"></div>
         </div>
         <div class="column" data-status="in-progress">
@@ -22,7 +23,7 @@
             <div class="task-list" id="in-progress"></div>
         </div>
         <div class="column" data-status="completed">
-            <h2>Completed</h2>
+            <h2>Done</h2>
             <div class="task-list" id="completed"></div>
         </div>
     </main>
@@ -47,4 +48,3 @@
     <script src="assets/script.js"></script>
 </body>
 </html>
-
